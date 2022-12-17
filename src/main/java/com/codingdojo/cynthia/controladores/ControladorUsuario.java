@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping("/usuarios")
 public class ControladorUsuario {
 	
 	@RequestMapping(value="/", method=RequestMethod.GET)
