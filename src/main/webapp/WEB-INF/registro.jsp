@@ -22,6 +22,9 @@
 			</div>
 			<input type="submit" value="Guardar" class="btn btn-success" >
 		</form>
+		<div class="text-danger">
+			<c:out value="${errorNombre}" />
+		</div>
 	</div>
 </body>
 </html>
