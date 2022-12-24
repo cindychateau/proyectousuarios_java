@@ -32,6 +32,7 @@
 								<input type="hidden" name="_method" value="DELETE" />
 								<input type="submit" value="Eliminar" class="btn btn-danger" />
 							</form>
+							<a href="/edit/${usuario.getId()}" class="btn btn-warning">Editar</a>
 						</td>
 					</tr>
 				</c:forEach>
