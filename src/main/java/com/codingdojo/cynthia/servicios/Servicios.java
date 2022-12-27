@@ -5,16 +5,21 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
+import com.codingdojo.cynthia.modelos.Direccion;
 import com.codingdojo.cynthia.modelos.Usuario;
+import com.codingdojo.cynthia.repositorios.RepositorioDirecciones;
 import com.codingdojo.cynthia.repositorios.RepositorioUsuarios;
 
 @Service
 public class Servicios {
 	
 	private final RepositorioUsuarios repositorio_usuarios;
+	private final RepositorioDirecciones repositorio_direcciones;
 
-	public Servicios(RepositorioUsuarios repositorio_usuarios) {
+	public Servicios(RepositorioUsuarios repositorio_usuarios,
+					 RepositorioDirecciones repositorio_direcciones) {
 		this.repositorio_usuarios = repositorio_usuarios;
+		this.repositorio_direcciones = repositorio_direcciones;
 	}
 	
 	//Me regresa un a lista de TODOS los usuarios
@@ -47,6 +52,16 @@ public class Servicios {
 	//Borrar usuario
 	public void delete_usuario(Long id) {
 		repositorio_usuarios.deleteById(id);
+	}
+	
+	//Guardar una direccion
+	public Direccion save_direccion(Direccion nuevaDireccion) {
+		return repositorio_direcciones.save(nuevaDireccion);
+	}
+	
+	//Obtener todos los usuarios que NO tienen dirección
+	public List<Usuario> usuarios_sin_direccion() {
+		return repositorio_usuarios.findByDireccionIdIsNull();
 	}
 	
 }

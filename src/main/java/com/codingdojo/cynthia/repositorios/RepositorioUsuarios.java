@@ -25,4 +25,7 @@ public interface RepositorioUsuarios extends CrudRepository<Usuario, Long>{
 	
 	void deleteById(Long id);
 	
+	//SELECT * FROM users LEFT JOIN addresses ON usuario_id = users.id WHERE addresses.id = NULL
+	List<Usuario> findByDireccionIdIsNull();
+	
 }

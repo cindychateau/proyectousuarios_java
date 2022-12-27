@@ -17,6 +17,7 @@
 					<th>Nombre</th>
 					<th>Apellido</th>
 					<th>E-mail</th>
+					<th>Dirección</th>
 					<th>Acciones</th>
 				</tr>
 			</thead>
@@ -26,6 +27,7 @@
 						<td> <c:out value="${usuario.getFirst_name()}" /> </td>
 						<td> <c:out value="${usuario.getLast_name()}" /> </td>
 						<td> <c:out value="${usuario.getEmail()}" /> </td>
+						<td> ${usuario.direccion.getStreet()} </td>
 						<td>
 							<!--  PENDIENTE editar buttons -->
 							<form action="/delete/${usuario.getId()}" method="post">

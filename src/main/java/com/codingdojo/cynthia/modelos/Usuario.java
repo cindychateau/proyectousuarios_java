@@ -2,11 +2,14 @@ package com.codingdojo.cynthia.modelos;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
@@ -45,6 +48,9 @@ public class Usuario {
 	
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date updated_at;
+	
+	@OneToOne(mappedBy="usuario", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+	private Direccion direccion;
 
 	public Usuario() {
 	}
@@ -129,5 +135,15 @@ public class Usuario {
 	protected void onUpdate() {
 		this.updated_at = new Date();
 	}
+
+	public Direccion getDireccion() {
+		return direccion;
+	}
+
+	public void setDireccion(Direccion direccion) {
+		this.direccion = direccion;
+	}
+	
+	
 	
 }
