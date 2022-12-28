@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.codingdojo.cynthia.modelos.Salon;
 import com.codingdojo.cynthia.modelos.Usuario;
 import com.codingdojo.cynthia.servicios.Servicios;
 
@@ -93,7 +94,12 @@ public class ControladorUsuarioPlantillas {
 	}
 	
 	@GetMapping("/new")
-	public String new_user(@ModelAttribute("usuario") Usuario usuario) {
+	public String new_user(@ModelAttribute("usuario") Usuario usuario,
+						   Model model) {
+		
+		List <Salon> salones = servicio.find_salones();
+		model.addAttribute("salones", salones);
+		
 		//En base a lo que el usuario ingrese, va a crear un objeto de usuario
 		return "new.jsp";
 	}
@@ -124,6 +130,10 @@ public class ControladorUsuarioPlantillas {
 				  		@ModelAttribute("usuario") Usuario usuario) {
 		Usuario usuario_edit = servicio.find_usuario(id);
 		model.addAttribute("usuario", usuario_edit);
+		
+		List <Salon> salones = servicio.find_salones();
+		model.addAttribute("salones", salones);
+		
 		return "edit.jsp";
 	}
 	

@@ -10,7 +10,12 @@
 </head>
 <body>
 	<div class="container">
-		<h1>¡Bienvenid@ <c:out value="${nombre}" /> !</h1>
+		<div class="d-flex justify-content-between align-items-center">
+			<h1>¡Bienvenid@ <c:out value="${nombre}" /> !</h1>
+			<a href="/new" class="btn btn-primary">Agrega Usuario</a>
+			<a href="/direcciones/new" class="btn btn-info">Agrega Dirección</a>
+			<a href="/salones" class="btn btn-warning">Ver Salones</a>
+		</div>
 		<table class="table table-hover">
 			<thead>
 				<tr>
@@ -18,6 +23,7 @@
 					<th>Apellido</th>
 					<th>E-mail</th>
 					<th>Dirección</th>
+					<th>Salón</th>
 					<th>Acciones</th>
 				</tr>
 			</thead>
@@ -28,6 +34,7 @@
 						<td> <c:out value="${usuario.getLast_name()}" /> </td>
 						<td> <c:out value="${usuario.getEmail()}" /> </td>
 						<td> ${usuario.direccion.getStreet()} </td>
+						<td> ${usuario.salon.getName()}</td>
 						<td>
 							<!--  PENDIENTE editar buttons -->
 							<form action="/delete/${usuario.getId()}" method="post">

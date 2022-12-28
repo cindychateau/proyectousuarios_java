@@ -6,8 +6,10 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 import com.codingdojo.cynthia.modelos.Direccion;
+import com.codingdojo.cynthia.modelos.Salon;
 import com.codingdojo.cynthia.modelos.Usuario;
 import com.codingdojo.cynthia.repositorios.RepositorioDirecciones;
+import com.codingdojo.cynthia.repositorios.RepositorioSalones;
 import com.codingdojo.cynthia.repositorios.RepositorioUsuarios;
 
 @Service
@@ -15,11 +17,14 @@ public class Servicios {
 	
 	private final RepositorioUsuarios repositorio_usuarios;
 	private final RepositorioDirecciones repositorio_direcciones;
+	private final RepositorioSalones repositorio_salones;
 
 	public Servicios(RepositorioUsuarios repositorio_usuarios,
-					 RepositorioDirecciones repositorio_direcciones) {
+					 RepositorioDirecciones repositorio_direcciones,
+					 RepositorioSalones repositorio_salones) {
 		this.repositorio_usuarios = repositorio_usuarios;
 		this.repositorio_direcciones = repositorio_direcciones;
+		this.repositorio_salones = repositorio_salones;
 	}
 	
 	//Me regresa un a lista de TODOS los usuarios
@@ -62,6 +67,16 @@ public class Servicios {
 	//Obtener todos los usuarios que NO tienen dirección
 	public List<Usuario> usuarios_sin_direccion() {
 		return repositorio_usuarios.findByDireccionIdIsNull();
+	}
+	
+	//Obtener todos los salones
+	public List<Salon> find_salones() {
+		return repositorio_salones.findAll();
+	}
+	
+	//Obtener un salon en base a su ID
+	public Salon find_salon(Long id) {
+		return repositorio_salones.findById(id).orElse(null);
 	}
 	
 }

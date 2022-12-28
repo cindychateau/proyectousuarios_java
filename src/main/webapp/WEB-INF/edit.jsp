@@ -35,6 +35,14 @@
 				<form:password path="password" class="form-control" />
 				<form:errors path="password" class="text-danger" />
 			</div>
+			<div class="form-group">
+				<form:label path="salon">Salon</form:label>
+				<form:select path="salon" class="form-select">
+					<c:forEach items="${salones}" var="salon">
+						<option value="${salon.id}" >${salon.name}</option>
+					</c:forEach>
+				</form:select>
+			</div>
 			<input type="submit" value="Guardar" class="btn btn-success" />
 		</form:form>
 	</div>
