@@ -1,6 +1,7 @@
 package com.codingdojo.cynthia.modelos;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -10,6 +11,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
@@ -57,6 +60,14 @@ public class Usuario {
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="classroom_id")
 	private Salon salon;
+	
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(
+			name="users_has_hobbies",
+			joinColumns = @JoinColumn(name="user_id"),
+			inverseJoinColumns = @JoinColumn(name="hobby_id")
+			)
+	List <Hobby> hobbies;
 
 	public Usuario() {
 	}
@@ -156,6 +167,14 @@ public class Usuario {
 
 	public void setSalon(Salon salon) {
 		this.salon = salon;
+	}
+
+	public List<Hobby> getHobbies() {
+		return hobbies;
+	}
+
+	public void setHobbies(List<Hobby> hobbies) {
+		this.hobbies = hobbies;
 	}
 	
 	
