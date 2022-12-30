@@ -15,6 +15,7 @@
 			<thead>
 				<tr>
 					<th>Nombre del Salón</th>
+					<th>Usuarios</th>
 					<th>Acciones</th>
 				</tr>
 			</thead>
@@ -23,6 +24,13 @@
 					<tr>
 						<td>${salon.name}</td>
 						<td>
+							<ul>
+								<c:forEach items="${salon.usuarios}" var="usuario">
+									<li>${usuario.first_name}</li>
+								</c:forEach>
+							</ul>
+						</td>
+						<td>
 							<a href="/salones/${salon.id}" class="btn btn-warning">Ver</a>
 						</td>
 					</tr>
@@ -30,6 +38,23 @@
 			</tbody>
 		</table>
 		<a href="/dashboard" class="btn btn-primary">Regresar a Dashboard</a>
+		<h2>Salones JOIN</h2>
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th>Nombre de la Clase</th>
+					<th>Usuario</th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach items="${salones_join}" var="objeto">
+					<tr>
+						<td>${objeto[0].name}</td>
+						<td>${objeto[1].first_name}</td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
 	</div>
 </body>
 </html>

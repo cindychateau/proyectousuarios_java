@@ -24,6 +24,7 @@
 					<th>E-mail</th>
 					<th>Dirección</th>
 					<th>Salón</th>
+					<th>Hobbies</th>
 					<th>Acciones</th>
 				</tr>
 			</thead>
@@ -36,12 +37,20 @@
 						<td> ${usuario.direccion.getStreet()} </td>
 						<td> ${usuario.salon.getName()}</td>
 						<td>
+							<ul>
+								<c:forEach items="${usuario.hobbies}" var="hobby">
+									<li>${hobby.name}</li>
+								</c:forEach>
+							</ul>
+						</td>
+						<td>
 							<!--  PENDIENTE editar buttons -->
 							<form action="/delete/${usuario.getId()}" method="post">
 								<input type="hidden" name="_method" value="DELETE" />
 								<input type="submit" value="Eliminar" class="btn btn-danger" />
 							</form>
 							<a href="/edit/${usuario.getId()}" class="btn btn-warning">Editar</a>
+							<a href="/asignar/${usuario.id}" class="btn btn-primary">Asignar Hobbies</a>
 						</td>
 					</tr>
 				</c:forEach>

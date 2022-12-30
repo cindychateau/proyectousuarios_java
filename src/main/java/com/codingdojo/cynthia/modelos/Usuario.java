@@ -67,7 +67,7 @@ public class Usuario {
 			joinColumns = @JoinColumn(name="user_id"),
 			inverseJoinColumns = @JoinColumn(name="hobby_id")
 			)
-	List <Hobby> hobbies;
+	private List <Hobby> hobbies;
 
 	public Usuario() {
 	}

@@ -94,4 +94,30 @@ public class Servicios {
 		return repositorio_hobbies.findById(id).orElse(null);
 	}
 	
+	/*
+	 * user_id = 4
+	 * hobby_id = 4
+	 * usuario = Peter Paramo
+	 * hobby_para_usuario = Bailar
+	 * lista_hobbies = [Correr, Nadar]
+	 * lista_hobbies = [Correr, Nadar, Bailar]
+	 * Guardamos a Peter
+	 * */
+	public void save_usuario_hobby(Long user_id, Long hobby_id) {
+		//Obtengo el objeto del usuario al que queremos agregar el hobby
+		Usuario usuario = find_usuario(user_id); 
+		Hobby hobby_para_usuario = find_hobby(hobby_id);
+		
+		List<Hobby> lista_hobbies = usuario.getHobbies();
+		lista_hobbies.add(hobby_para_usuario);
+		
+		usuario.setHobbies(lista_hobbies);
+		
+		repositorio_usuarios.save(usuario);
+	}
+	
+	public List<Object[]> find_salones_join() {
+		return repositorio_salones.joinSalonesUsuarios2();
+	}
+	
 }

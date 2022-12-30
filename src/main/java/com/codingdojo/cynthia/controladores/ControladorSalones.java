@@ -24,6 +24,8 @@ public class ControladorSalones {
 		List <Salon> salones = servicio.find_salones();
 		model.addAttribute("salones", salones);
 		
+		model.addAttribute("salones_join", servicio.find_salones_join());
+		
 		return "/salones/index.jsp";
 	}
 	
